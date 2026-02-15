@@ -95,7 +95,9 @@ export default function ContactPage() {
                       <h4 className="font-semibold text-gray-900 mb-1">
                         Phone
                       </h4>
-                      <p className="text-gray-600">+91 80 2672 1983</p>
+                      <p className="text-gray-600">82964 65473</p>
+		      <p className="text-gray-600">78929 71280</p>
+		      <p className="text-gray-600">88845 21419</p>
                     </div>
                   </div>
                 </div>
