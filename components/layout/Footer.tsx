@@ -14,11 +14,11 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Image
-                src="logo.jpg"
+                src="/logo.jpg"
                 alt="JoEL Logo"
                 width={40}
                 height={40}
-                className="w-10 h-10 rounded-lg"
+                className="w-10 h-10 rounded-lg object-contain"
               />
               <span className="text-xl font-bold font-heading text-white">
                 JoEL
