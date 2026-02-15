@@ -75,7 +75,7 @@ export default function ContactPage() {
                         Location
                       </h4>
                       <p className="text-gray-600">
-                        Department of ECE
+                        610, BE Block
                         <br />
                         PES University
                         <br />
