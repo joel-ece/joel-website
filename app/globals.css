@@ -1,5 +1,41 @@
 @import 'tailwindcss';
 
+@theme {
+  /* Joel Purple Scale */
+  --color-joel-purple-50: #f5f3ff;
+  --color-joel-purple-100: #ede9fe;
+  --color-joel-purple-200: #ddd6fe;
+  --color-joel-purple-300: #c4b5fd;
+  --color-joel-purple-400: #a78bfa;
+  --color-joel-purple-500: #8b5cf6;
+  --color-joel-purple-600: #7c3aed;
+  --color-joel-purple-700: #6d28d9;
+  --color-joel-purple-800: #5b21b6;
+  --color-joel-purple-900: #4c1d95;
+  --color-joel-purple-950: #2e1065;
+
+  /* Joel Blue Scale */
+  --color-joel-blue-50: #eff6ff;
+  --color-joel-blue-100: #dbeafe;
+  --color-joel-blue-200: #bfdbfe;
+  --color-joel-blue-300: #93c5fd;
+  --color-joel-blue-400: #60a5fa;
+  --color-joel-blue-500: #3b82f6;
+  --color-joel-blue-600: #2563eb;
+  --color-joel-blue-700: #1d4ed8;
+  --color-joel-blue-800: #1e40af;
+  --color-joel-blue-900: #1e3a8a;
+  --color-joel-blue-950: #172554;
+
+  /* Custom Gradients */
+  --background-image-joel-gradient: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  --background-image-joel-gradient-dark: linear-gradient(135deg, #4c1d95 0%, #1e3a8a 100%);
+
+  /* Custom Fonts */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
