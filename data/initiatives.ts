@@ -5,7 +5,7 @@ export interface Initiative {
   longDescription: string;
   icon: string;
   category: string;
-  status: "Active" | "Upcoming" | "Ongoing";
+  status: "Active" | "Upcoming" | "Ongoing" | "Completed";
 }
 
 export const initiatives: Initiative[] = [
