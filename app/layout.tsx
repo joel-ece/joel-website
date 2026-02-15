@@ -63,11 +63,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} ${plusJakarta.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
-	<ScrollToTop />
+        <ScrollToTop />
       </body>
     </html>
   );
