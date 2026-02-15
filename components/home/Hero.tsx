@@ -7,23 +7,23 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    image: "/hero/slide1.jpeg",
+    image: "/joel-website/public/hero/slide1.jpeg",
     alt: "JoEL Lab Activities",
   },
   {
-    image: "/hero/slide2.jpeg",
+    image: "/joel-website/public/hero/slide2.jpeg",
     alt: "HackeZee Hackathon",
   },
   {
-    image: "/hero/slide3.jpeg",
+    image: "/joel-website/public/hero/slide3.jpeg",
     alt: "Student Projects",
   },
   {
-    image: "/hero/slide4.jpeg",
+    image: "/joel-website/public/hero/slide4.jpeg",
     alt: "Team Collaboration",
   },
   {
-    image: "/hero/slide5.png",
+    image: "/joel-website/public/hero/slide5.png",
     alt: "Team Collaboration",
   },
   // Add or remove slides as needed
