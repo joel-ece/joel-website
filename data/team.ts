@@ -184,8 +184,8 @@ export const teamMembers: TeamMember[] = [
 {
     id: "student-10",
     name: "Manasa Ajit",
-    role: "Student Mentor",
-    category: "Ex - Student Mentor",
+    role: "Ex - Student Mentor",
+    category: "Student Mentor",
     bio: "",
     yearsAtJoEL: "2024–2025",
     email: "manasaajit.j@gmail.com",
