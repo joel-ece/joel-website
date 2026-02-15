@@ -54,7 +54,7 @@ export default function ProjectsPage() {
             your vision to life.
           </p>
           <a
-            href="mailto:joel.ece@pes.edu"
+            href="mailto:joel_ece@pes.edu"
             className="inline-flex items-center px-8 py-4 bg-joel-gradient text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg"
           >
             Submit Your Project
