@@ -20,32 +20,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      
+
       - name: Install dependencies
         run: npm ci
-      
-      - name: Build with Pages config
+
+      - name: Create GitHub Pages config
         run: |
-          echo 'import type { NextConfig } from "next";
+          cat > next.config.pages.ts << 'EOF'
+          import type { NextConfig } from "next";
           const nextConfig: NextConfig = {
             output: "export",
             basePath: "/joel-website",
             images: { unoptimized: true },
           };
-          export default nextConfig;' > next.config.temp.ts
-          mv next.config.ts next.config.original.ts
-          mv next.config.temp.ts next.config.ts
+          export default nextConfig;
+          EOF
+
+      - name: Build with Pages config
+        run: |
+          cp next.config.ts next.config.original.ts
+          cp next.config.pages.ts next.config.ts
           npm run build
-          mv next.config.original.ts next.config.ts
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
