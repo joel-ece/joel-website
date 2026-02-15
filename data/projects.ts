@@ -140,25 +140,5 @@ export const projects: Project[] = [
     category: "Assistive Technology",
   },
 
-  // Existing demo projects retained
-  {
-    id: "neural-voice-assistant",
-    title: "Neural Voice Assistant for Regional Languages",
-    description:
-      "AI-powered voice assistant with support for Kannada, Hindi, and Tamil. Utilizes deep learning for speech recognition and natural language processing to provide voice-controlled device interactions.",
-    techStack: ["PyTorch", "Transformers", "FastAPI", "React Native"],
-    team: ["Lakshmi Iyer", "Vikram Joshi"],
-    status: "Completed",
-    category: "AI/ML",
-  },
-  {
-    id: "fpga-image-processor",
-    title: "FPGA-Based Real-Time Image Processor",
-    description:
-      "Hardware-accelerated image processing pipeline on FPGA for real-time video filtering, edge detection, and object recognition. Achieves processing speeds of 60+ FPS at 1080p resolution.",
-    techStack: ["Verilog", "FPGA", "OpenCV", "C++"],
-    team: ["Rahul Krishnan", "Sneha Bhat", "Ajay Kumar"],
-    status: "In Progress",
-    category: "Embedded Systems",
-  },
+
 ];
