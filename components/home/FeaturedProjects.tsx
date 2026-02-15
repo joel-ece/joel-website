@@ -2,32 +2,17 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { projects } from "@/data/projects";
 
-const featuredProjects = [
-  {
-    title: "Smart IoT Energy Grid",
-    description:
-      "Intelligent energy monitoring system using IoT sensors and machine learning to optimize power consumption.",
-    tags: ["IoT", "Machine Learning", "React"],
-    status: "Completed",
-  },
-  {
-    title: "5G Signal Propagation Analyzer",
-    description:
-      "Advanced tool for analyzing 5G mmWave propagation with ray-tracing algorithms.",
-    tags: ["Signal Processing", "Python", "MATLAB"],
-    status: "In Progress",
-  },
-  {
-    title: "Neural Voice Assistant",
-    description:
-      "AI-powered voice assistant with support for regional languages including Kannada and Hindi.",
-    tags: ["AI/ML", "NLP", "PyTorch"],
-    status: "Completed",
-  },
-];
+// Function to get random projects
+function getRandomProjects(count: number) {
+  const shuffled = [...projects].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
 
 export default function FeaturedProjects() {
+  const featuredProjects = getRandomProjects(3);
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,9 +23,9 @@ export default function FeaturedProjects() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project) => (
             <div
-              key={index}
+              key={project.id}
               className="border border-gray-200 rounded-xl p-6 hover:border-joel-purple-300 hover:shadow-lg transition-all"
             >
               <div className="flex items-center justify-between mb-4">
@@ -48,7 +33,9 @@ export default function FeaturedProjects() {
                   className={`px-3 py-1 text-xs font-semibold rounded-full ${
                     project.status === "Completed"
                       ? "bg-green-100 text-green-800"
-                      : "bg-yellow-100 text-yellow-800"
+                      : project.status === "In Progress"
+                      ? "bg-yellow-100 text-yellow-800"
+                      : "bg-blue-100 text-blue-800"
                   }`}
                 >
                   {project.status}
@@ -58,16 +45,28 @@ export default function FeaturedProjects() {
               <h3 className="text-xl font-bold font-heading text-gray-900 mb-3">
                 {project.title}
               </h3>
-              <p className="text-gray-600 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
+              <p className="text-gray-600 mb-4 line-clamp-3">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {project.techStack.slice(0, 3).map((tech) => (
                   <span
-                    key={tag}
+                    key={tech}
                     className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full"
                   >
-                    {tag}
+                    {tech}
                   </span>
                 ))}
+                {project.techStack.length > 3 && (
+                  <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-500 rounded-full">
+                    +{project.techStack.length - 3}
+                  </span>
+                )}
+              </div>
+              <div className="pt-3 border-t border-gray-100">
+                <span className="inline-flex items-center px-3 py-1 text-xs font-medium bg-joel-purple-100 text-joel-purple-700 rounded-full">
+                  {project.category}
+                </span>
               </div>
             </div>
           ))}
