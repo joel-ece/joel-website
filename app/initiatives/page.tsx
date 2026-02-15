@@ -54,7 +54,7 @@ export default function InitiativesPage() {
             projects, there's something for everyone.
           </p>
           <a
-            href="mailto:joel.ece@pes.edu"
+            href="mailto:joel_ece@pes.edu"
             className="inline-flex items-center px-8 py-4 bg-white text-joel-purple-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors shadow-lg"
           >
             Get in Touch
