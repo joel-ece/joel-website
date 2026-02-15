@@ -109,7 +109,7 @@ export const teamMembers: TeamMember[] = [
     category: "Student Mentor",
     bio: "",
     yearsAtJoEL: "2024–2026",
-    email: "vvilas231@gmail.com",
+    email: "kaavya.katuri@gmail.com",
     currentWork: "Corporate services Intern at KPMG India",
     image: "/team/kaavya.jpg",
     linkedin: "https://www.linkedin.com/in/kaavyakaturi/",

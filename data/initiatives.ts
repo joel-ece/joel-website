@@ -17,7 +17,7 @@ export const initiatives: Initiative[] = [
       "HackeZee is JoEL’s flagship annual hardware hackathon that brings together undergraduate Electronics and Communication Engineering students to design, build, and demonstrate innovative, real-world hardware solutions. The contest emphasizes hands-on engineering by requiring teams to develop fully functional prototypes using microcontrollers, sensors, actuators, and embedded systems, supported by simulation and design tools where necessary. Centered around impactful domains such as healthcare, smart systems, automation, and emerging technologies, HackeZee fosters problem-solving, interdisciplinary thinking, and practical implementation skills through structured mentorship, technical scrutiny, and live project demonstrations before a jury panel.",
     icon: "Zap",
     category: "Competition",
-    status: "Completed",
+    status: "Upcoming",
   },
   {
     id: "roadshow",
@@ -47,7 +47,7 @@ export const initiatives: Initiative[] = [
       "Bootstrap is JoEL’s introductory hands-on module designed to give first-year students early exposure to practical engineering and hardware innovation. Through live project demonstrations, guided embedded system activities, and showcases of past competitions and prototypes, students experience how classroom concepts translate into real-world applications. The program fosters curiosity, technical confidence, and an interest in hardware-driven learning from the very beginning of their academic journey.",
     icon: "Users",
     category: "Academic",
-    status: "Completed",
+    status: "Upcoming",
   },
 
 ];
