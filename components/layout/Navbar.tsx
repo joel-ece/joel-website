@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,9 +26,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-joel-gradient rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">J</span>
-            </div>
+            <Image
+              src="/logo.jpg"
+              alt="JoEL Logo"
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-lg"
+            />
             <span className="text-xl font-bold font-heading text-gray-900">
               JoEL
             </span>

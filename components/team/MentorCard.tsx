@@ -1,13 +1,18 @@
 import React from "react";
-import { Mail, Award } from "lucide-react";
+import Image from "next/image";
+import { Mail, Linkedin, Github, Briefcase, Calendar } from "lucide-react";
 
 interface MentorCardProps {
   name: string;
   role: string;
-  category: string;
+  category: "Faculty Mentor" | "Student Mentor";
   bio: string;
-  specialization?: string;
-  email?: string;
+  email: string;
+  image?: string;
+  linkedin?: string;
+  github?: string;
+  currentWork?: string;
+  yearsAtJoEL?: string;
 }
 
 export default function MentorCard({
@@ -15,36 +20,45 @@ export default function MentorCard({
   role,
   category,
   bio,
-  specialization,
   email,
+  image,
+  linkedin,
+  github,
+  currentWork,
+  yearsAtJoEL,
 }: MentorCardProps) {
   const initials = name
     .split(" ")
     .map((n) => n[0])
     .join("");
 
-  const getCategoryColor = () => {
-    switch (category) {
-      case "Faculty":
-        return "from-purple-500 to-purple-600";
-      case "Student Lead":
-        return "from-blue-500 to-blue-600";
-      case "Mentor":
-        return "from-indigo-500 to-indigo-600";
-      default:
-        return "from-gray-500 to-gray-600";
-    }
-  };
+  const avatarGradient =
+    category === "Faculty Mentor"
+      ? "from-joel-purple-500 to-joel-purple-700"
+      : "from-joel-blue-500 to-joel-blue-700";
 
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 overflow-hidden">
-      <div className="p-6">
+    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 overflow-hidden h-full flex flex-col">
+      <div className="p-6 flex-grow">
+        {/* Header: Photo/Avatar + Name */}
         <div className="flex items-start space-x-4 mb-4">
-          <div
-            className={`w-16 h-16 bg-gradient-to-br ${getCategoryColor()} rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0`}
-          >
-            {initials}
-          </div>
+          {image ? (
+            <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-gray-200">
+              <Image
+                src={image}
+                alt={name}
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              className={`w-16 h-16 bg-gradient-to-br ${avatarGradient} rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0`}
+            >
+              {initials}
+            </div>
+          )}
           <div className="flex-grow">
             <h3 className="text-xl font-bold font-heading text-gray-900 mb-1">
               {name}
@@ -52,30 +66,75 @@ export default function MentorCard({
             <p className="text-joel-purple-600 font-semibold text-sm mb-2">
               {role}
             </p>
-            <span className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+            <span
+              className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
+                category === "Faculty Mentor"
+                  ? "bg-joel-purple-100 text-joel-purple-700"
+                  : "bg-joel-blue-100 text-joel-blue-700"
+              }`}
+            >
               {category}
             </span>
           </div>
         </div>
 
-        {specialization && (
-          <div className="flex items-center text-sm text-gray-600 mb-3 bg-gray-50 p-2 rounded-lg">
-            <Award className="w-4 h-4 mr-2 text-joel-purple-600 flex-shrink-0" />
-            <span>{specialization}</span>
+        {/* Bio */}
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">{bio}</p>
+
+        {/* Student Mentor specific: Current Work & Years */}
+        {category === "Student Mentor" && (
+          <div className="space-y-2 mb-4">
+            {currentWork && (
+              <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
+                <Briefcase className="w-4 h-4 mr-2 text-joel-blue-600 flex-shrink-0" />
+                <span>
+                  <strong>Currently:</strong> {currentWork}
+                </span>
+              </div>
+            )}
+            {yearsAtJoEL && (
+              <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
+                <Calendar className="w-4 h-4 mr-2 text-joel-blue-600 flex-shrink-0" />
+                <span>
+                  <strong>At JoEL:</strong> {yearsAtJoEL}
+                </span>
+              </div>
+            )}
           </div>
         )}
 
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">{bio}</p>
-
-        {email && (
+        {/* Social Links */}
+        <div className="flex items-center space-x-3 pt-2 border-t border-gray-100">
           <a
             href={`mailto:${email}`}
-            className="inline-flex items-center text-joel-purple-600 font-semibold text-sm hover:text-joel-purple-700 transition-colors"
+            className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 text-gray-600 hover:bg-joel-purple-100 hover:text-joel-purple-600 transition-colors"
+            aria-label={`Email ${name}`}
           >
-            <Mail className="w-4 h-4 mr-2" />
-            Contact
+            <Mail className="w-4 h-4" />
           </a>
-        )}
+          {linkedin && (
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+              aria-label={`${name}'s LinkedIn`}
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+          )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-800 hover:text-white transition-colors"
+              aria-label={`${name}'s GitHub`}
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

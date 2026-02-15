@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -20,6 +33,8 @@ export const metadata: Metadata = {
     "HackeZee",
     "JIMPPS",
     "RoadShow",
+    "Bootstrap",
+    "Electronic Kit Distribution"
   ],
   authors: [{ name: "JoEL - Joy of Engineering Lab" }],
   openGraph: {
@@ -45,7 +60,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">
+      <body
+        className={`${inter.variable} ${plusJakarta.variable} font-sans antialiased`}
+      >
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

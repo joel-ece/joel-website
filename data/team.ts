@@ -1,77 +1,71 @@
-export interface TeamMember {
+export interface FacultyMentor {
   id: string;
   name: string;
   role: string;
-  category: "Faculty" | "Student Lead" | "Mentor";
+  category: "Faculty Mentor";
   bio: string;
-  email?: string;
-  specialization?: string;
+  email: string;
+  image?: string;
+  linkedin?: string;
+  github?: string;
 }
 
+export interface StudentMentor {
+  id: string;
+  name: string;
+  role: string;
+  category: "Student Mentor";
+  bio: string;
+  currentWork: string;
+  yearsAtJoEL: string;
+  email: string;
+  image?: string;
+  linkedin?: string;
+  github?: string;
+}
+
+export type TeamMember = FacultyMentor | StudentMentor;
+
 export const teamMembers: TeamMember[] = [
+  // ===== FACULTY MENTORS =====
   {
-    id: "faculty-prajeesha",
+    id: "faculty-1",
     name: "Prof. Prajeesha",
-    role: "Faculty Coordinator",
-    category: "Faculty",
-    bio: "Professor Prajeesha serves as the Faculty Coordinator for JoEL, guiding students in their pursuit of innovation and excellence. With extensive experience in electronics and communication engineering, she mentors projects spanning IoT, embedded systems, and signal processing.",
-    email: "prajeesha@pes.edu",
-    specialization: "Embedded Systems, IoT",
+    role: "Faculty Mentor",
+    category: "Faculty Mentor",
+    bio: "Professor Prajeesha serves as a Faculty Mentor for JoEL, guiding students in their pursuit of innovation and excellence.",
+    email: "prajeeshaemmanuel@pes.edu",
+    image: "/team/prajeesha.jpg",
+    linkedin: "https://www.linkedin.com/in/prajeesha-prajeesha-2aa6111ba/",
+    github: "",
+  },
+
+  // ===== STUDENT MENTORS =====
+  {
+    id: "student-1",
+    name: "Dhanush M R",
+    role: "Ex - Student Head",
+    category: "Student Mentor",
+    bio: "Led JoEL's technical initiatives including HackeZee hackathon. Specializes in FPGA design and digital signal processing.",
+    currentWork: "Software Engineer at Intel",
+    yearsAtJoEL: "2023–2025",
+    email: "aditya.verma@gmail.com",
+    image: "/team/dhanush.jpeg",
+    linkedin: "https://www.linkedin.com/in/dhanush-meda-00a965227",
+    github: "",
   },
   {
-    id: "lead-aditya",
-    name: "Aditya Verma",
-    role: "Student Lead",
-    category: "Student Lead",
-    bio: "Final year ECE student leading JoEL's technical initiatives. Specializes in FPGA design and digital signal processing. Led the team that won Best Hardware Project at HackeZee 2024.",
-    specialization: "FPGA, Digital Design",
-  },
-  {
-    id: "lead-shreya",
+    id: "student-2",
     name: "Shreya Menon",
-    role: "Student Lead - Events",
-    category: "Student Lead",
-    bio: "Passionate about bridging technology and community. Coordinates RoadShow events and outreach programs. Experienced in project management and technical communication.",
-    specialization: "IoT, Event Management",
+    role: "Student Mentor",
+    category: "Student Mentor",
+    bio: "Coordinated RoadShow events and outreach programs. Passionate about bridging technology and community.",
+    currentWork: "Graduate Student at IISc Bangalore",
+    yearsAtJoEL: "2021–2023",
+    email: "shreya.menon@gmail.com",
+    image: "/team/shreya.jpg",
+    linkedin: "https://linkedin.com/in/shreyamenon",
+    github: "https://github.com/shreyamenon",
   },
-  {
-    id: "mentor-rajesh",
-    name: "Rajesh Kumar",
-    role: "Technical Mentor",
-    category: "Mentor",
-    bio: "Graduate student specializing in wireless communications. Mentors student projects in 5G technology and antenna design. Published researcher in IEEE conferences.",
-    specialization: "Wireless Communications, RF Design",
-  },
-  {
-    id: "mentor-ananya",
-    name: "Ananya Deshmukh",
-    role: "AI/ML Mentor",
-    category: "Mentor",
-    bio: "PhD candidate focusing on machine learning applications in signal processing. Guides students in implementing neural networks for embedded platforms.",
-    specialization: "Machine Learning, Signal Processing",
-  },
-  {
-    id: "mentor-kiran",
-    name: "Kiran Patel",
-    role: "Embedded Systems Mentor",
-    category: "Mentor",
-    bio: "Senior student with expertise in embedded systems and robotics. Has led multiple successful JIMPPS projects and provides hands-on guidance in hardware-software integration.",
-    specialization: "Embedded Systems, Robotics",
-  },
-  {
-    id: "mentor-priya",
-    name: "Priya Sharma",
-    role: "Web & Design Mentor",
-    category: "Mentor",
-    bio: "Experienced in full-stack development and UI/UX design. Helps students build web interfaces for their projects and ensures professional documentation.",
-    specialization: "Web Development, UI/UX",
-  },
-  {
-    id: "mentor-varun",
-    name: "Varun Reddy",
-    role: "Technical Mentor",
-    category: "Mentor",
-    bio: "Specializes in IoT architecture and cloud integration. Mentors teams on building scalable connected systems and data analytics platforms.",
-    specialization: "IoT, Cloud Computing",
-  },
+  // Add more members following the same pattern...
 ];

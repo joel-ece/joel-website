@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const facultyCoordinator = teamMembers.find(
-    (member) => member.category === "Faculty"
+    (member) => member.category === "Faculty Mentor"
   );
 
   return (
@@ -43,24 +43,13 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg text-gray-600 space-y-4">
             <p>
-              The <strong>Joy of Engineering Lab (JoEL)</strong> is a student-driven
-              innovation hub under the Department of Electronics & Communication
-              Engineering at PES University. Established to bridge the gap between
-              theoretical knowledge and practical application, JoEL provides a
-              collaborative space where students can explore, innovate, and excel.
+              The <strong>Joy of Engineering Lab (JoEL)</strong> is a student-driven innovation and prototyping ecosystem under the Department of Electronics and Communication Engineering at PES University. It was established to bridge the gap between theoretical coursework and real-world engineering practice by creating a structured environment where students design, build, and validate functional hardware systems. JoEL emphasizes hands-on learning, technical rigor, and problem-solving through practical implementation rather than simulation-only exploration.
             </p>
             <p>
-              Through initiatives like HackeZee (our flagship hackathon), RoadShow
-              (outreach and demonstrations), and JIMPPS (Joint Interdisciplinary Mini
-              Projects for PES Students), we empower students to work on real-world
-              challenges, develop technical skills, and showcase their innovations to
-              the broader community.
+              JoEL operates through flagship initiatives such as hardware hackathons, interdisciplinary project programs, and structured prototyping platforms that integrate embedded systems, IoT, signal processing, robotics, artificial intelligence, and hardware–software co-design. Students work in teams under mentorship, undergo technical scrutiny, and develop demonstrable prototypes that address real-world challenges. The lab promotes model-based design, hardware validation, and system-level thinking, often in collaboration with industry and academic partners.
             </p>
             <p>
-              JoEL is more than a lab—it's a culture of continuous learning,
-              experimentation, and pushing boundaries. Our projects span diverse
-              domains including IoT, embedded systems, signal processing, artificial
-              intelligence, robotics, and wireless communications.
+              More than a laboratory space, JoEL represents a culture of experimentation, accountability, and engineering leadership. It provides mentorship, infrastructure support, and opportunities for publication, competition, and industry engagement. By encouraging interdisciplinary collaboration and innovation-driven execution, JoEL enables students to transition from learners to builders—developing technical depth, research orientation, and industry readiness.
             </p>
           </div>
         </div>
@@ -83,7 +72,9 @@ export default function AboutPage() {
               role={facultyCoordinator.role}
               bio={facultyCoordinator.bio}
               email={facultyCoordinator.email}
-              specialization={facultyCoordinator.specialization}
+	      image={facultyCoordinator.image}
+	      linkedin={facultyCoordinator.linkedin}
+              github={facultyCoordinator.github}
             />
           </div>
         </section>

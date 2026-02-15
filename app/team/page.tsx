@@ -2,19 +2,21 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/ui/SectionHeader";
 import MentorCard from "@/components/team/MentorCard";
 import { teamMembers } from "@/data/team";
+import type { StudentMentor } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "Meet the JoEL team: faculty coordinators, student leads, and mentors driving innovation at PES University.",
+    "Meet the JoEL team: faculty mentors and student mentors driving innovation at PES University.",
 };
 
 export default function TeamPage() {
-  const faculty = teamMembers.filter((member) => member.category === "Faculty");
-  const studentLeads = teamMembers.filter(
-    (member) => member.category === "Student Lead"
+  const facultyMentors = teamMembers.filter(
+    (member) => member.category === "Faculty Mentor"
   );
-  const mentors = teamMembers.filter((member) => member.category === "Mentor");
+  const studentMentors = teamMembers.filter(
+    (member) => member.category === "Student Mentor"
+  );
 
   return (
     <div className="bg-white">
@@ -23,29 +25,35 @@ export default function TeamPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             title="Our Team"
-            subtitle="Meet the dedicated individuals driving innovation and excellence at JoEL"
+            subtitle="Meet the dedicated faculty and student mentors driving innovation and excellence at JoEL"
             centered
           />
         </div>
       </section>
 
-      {/* Faculty Coordinator */}
-      {faculty.length > 0 && (
+      {/* Faculty Mentors */}
+      {facultyMentors.length > 0 && (
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold font-heading text-gray-900 mb-8 text-center">
-              Faculty Coordinator
+            <h2 className="text-3xl font-bold font-heading text-gray-900 mb-2 text-center">
+              Faculty Mentors
             </h2>
-            <div className="max-w-2xl mx-auto">
-              {faculty.map((member) => (
+            <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+              Experienced faculty guiding students in their pursuit of
+              innovation and technical excellence
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {facultyMentors.map((member) => (
                 <MentorCard
                   key={member.id}
                   name={member.name}
                   role={member.role}
                   category={member.category}
                   bio={member.bio}
-                  specialization={member.specialization}
                   email={member.email}
+		  image={member.image}
+                  linkedin={member.linkedin}
+                  github={member.github}
                 />
               ))}
             </div>
@@ -53,49 +61,36 @@ export default function TeamPage() {
         </section>
       )}
 
-      {/* Student Leads */}
-      {studentLeads.length > 0 && (
+      {/* Student Mentors */}
+      {studentMentors.length > 0 && (
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold font-heading text-gray-900 mb-8 text-center">
-              Student Leadership
+            <h2 className="text-3xl font-bold font-heading text-gray-900 mb-2 text-center">
+              Student Mentors
             </h2>
+            <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+              Alumni and senior students who have contributed to JoEL's
+              mission and continue to inspire the next generation
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {studentLeads.map((member) => (
-                <MentorCard
-                  key={member.id}
-                  name={member.name}
-                  role={member.role}
-                  category={member.category}
-                  bio={member.bio}
-                  specialization={member.specialization}
-                  email={member.email}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Mentors */}
-      {mentors.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold font-heading text-gray-900 mb-8 text-center">
-              Technical Mentors
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {mentors.map((member) => (
-                <MentorCard
-                  key={member.id}
-                  name={member.name}
-                  role={member.role}
-                  category={member.category}
-                  bio={member.bio}
-                  specialization={member.specialization}
-                  email={member.email}
-                />
-              ))}
+              {studentMentors.map((member) => {
+                const studentData = member as StudentMentor;
+                return (
+                  <MentorCard
+                    key={member.id}
+                    name={member.name}
+                    role={member.role}
+                    category={member.category}
+                    bio={member.bio}
+                    email={member.email}	
+ 		    image={member.image}
+                    linkedin={member.linkedin}
+                    github={member.github}
+                    currentWork={studentData.currentWork}
+                    yearsAtJoEL={studentData.yearsAtJoEL}
+                  />
+                );
+              })}
             </div>
           </div>
         </section>
@@ -108,9 +103,9 @@ export default function TeamPage() {
             Want to Join Our Team?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            We're always looking for passionate students who want to contribute to
-            JoEL's mission. Whether as a mentor, team member, or project
-            contributor, there are many ways to get involved.
+            We're always looking for passionate students who want to contribute
+            to JoEL's mission. Whether as a mentor or project contributor,
+            there are many ways to get involved.
           </p>
           <a
             href="mailto:joel.ece@pes.edu"

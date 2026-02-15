@@ -13,9 +13,7 @@ export default function VisionMission() {
           Vision
         </h3>
         <p className="text-gray-600 leading-relaxed">
-          To be a premier innovation hub that nurtures creative thinking,
-          technical excellence, and interdisciplinary collaboration, producing
-          engineers who drive technological advancement and societal impact.
+          To be a leading student-driven innovation hub that cultivates technical excellence, creative problem-solving, and interdisciplinary collaboration—empowering engineers to develop impactful technologies that address real-world challenges.
         </p>
       </div>
 
@@ -28,9 +26,7 @@ export default function VisionMission() {
           Mission
         </h3>
         <p className="text-gray-600 leading-relaxed">
-          To provide a dynamic learning environment where students engage in
-          hands-on projects, competitive initiatives, and outreach activities that
-          bridge academic knowledge with real-world applications.
+          To create a hands-on, application-oriented learning environment where students design, build, and validate engineering solutions through projects, hackathons, research initiatives, and industry collaborations—bridging academic theory with practical implementation.
         </p>
       </div>
 

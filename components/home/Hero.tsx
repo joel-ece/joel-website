@@ -1,75 +1,155 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+
+const slides = [
+  {
+    image: "/hero/slide1.jpeg",
+    alt: "JoEL Lab Activities",
+  },
+  {
+    image: "/hero/slide2.jpeg",
+    alt: "HackeZee Hackathon",
+  },
+  {
+    image: "/hero/slide3.jpeg",
+    alt: "Student Projects",
+  },
+  {
+    image: "/hero/slide4.jpeg",
+    alt: "Team Collaboration",
+  },
+  {
+    image: "/hero/slide5.png",
+    alt: "Team Collaboration",
+  },
+  // Add or remove slides as needed
+];
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  }, []);
+
+  // Auto-advance every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
   return (
-    <section className="relative bg-joel-gradient overflow-hidden">
-      {/* Decorative Grid Pattern */}
-      <div className="absolute inset-0 opacity-10">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* ===== BACKGROUND IMAGE CAROUSEL ===== */}
+      {slides.map((slide, index) => (
         <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, white 1px, transparent 1px),
-              linear-gradient(to bottom, white 1px, transparent 1px)
-            `,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={slide.image}
+            alt={slide.alt}
+            fill
+            className="object-cover"
+            priority={index === 0}
+            sizes="100vw"
+          />
+        </div>
+      ))}
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-        <div className="text-center">
-          {/* Subtitle */}
-          <div className="inline-flex items-center space-x-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-            <Sparkles className="w-4 h-4 text-white" />
-            <span className="text-sm font-medium text-white">
-              Department of Electronics & Communication Engineering • PES
-              University
-            </span>
-          </div>
+      {/* ===== DARK OVERLAY ===== */}
+      <div className="absolute inset-0 bg-black/60 z-10" />
 
-          {/* Title */}
-          <h1 className="text-5xl md:text-7xl font-bold font-heading text-white mb-6 leading-tight">
-            Joy of Engineering Lab
-          </h1>
+      {/* ===== GRADIENT OVERLAY (keeps the purple/blue tint) ===== */}
+      <div className="absolute inset-0 bg-gradient-to-br from-joel-purple-900/50 via-transparent to-joel-blue-900/50 z-10" />
 
-          {/* Description */}
-          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Fostering innovation, collaboration, and excellence through hands-on
-            projects, competitive initiatives, and interdisciplinary learning
-          </p>
+      {/* ===== HERO CONTENT ===== */}
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+        <div className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8">
+          <span className="text-white/90 text-sm font-medium">
+            ⚙️ Department of Electronics & Communication Engineering •
+            PES University
+          </span>
+        </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              href="/initiatives"
-              className="group inline-flex items-center px-8 py-4 bg-white text-joel-purple-600 font-semibold rounded-lg hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl"
-            >
-              Explore Initiatives
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg hover:bg-white/20 transition-all border border-white/30"
-            >
-              Learn More
-            </Link>
-          </div>
+        <h1 className="text-5xl md:text-7xl font-bold font-heading text-white mb-6 drop-shadow-lg">
+          Joy of Engineering Lab
+        </h1>
+
+        <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+          Fostering innovation, collaboration, and excellence through hands-on
+          projects, competitive initiatives, and interdisciplinary learning
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/initiatives"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-joel-purple-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg text-lg"
+          >
+            Explore Initiatives
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+          <Link
+            href="/about"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-lg hover:bg-white/25 transition-colors text-lg"
+          >
+            Learn More
+          </Link>
         </div>
       </div>
 
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
+      {/* ===== CAROUSEL CONTROLS ===== */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* ===== SLIDE INDICATOR DOTS ===== */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide
+                ? "bg-white w-8"
+                : "bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* ===== BOTTOM WAVE ===== */}
+      <div className="absolute bottom-0 left-0 right-0 z-20">
         <svg
           viewBox="0 0 1440 120"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto"
+          className="w-full"
         >
           <path
-            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+            d="M0,64 C480,120 960,0 1440,64 L1440,120 L0,120 Z"
             fill="white"
           />
         </svg>

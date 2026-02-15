@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 
 export default function Footer() {
@@ -12,9 +13,13 @@ export default function Footer() {
           {/* About Section */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-joel-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">J</span>
-              </div>
+              <Image
+                src="/logo.jpg"
+                alt="JoEL Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-lg"
+              />
               <span className="text-xl font-bold font-heading text-white">
                 JoEL
               </span>
@@ -35,7 +40,7 @@ export default function Footer() {
                 <Github size={20} />
               </a>
               <a
-                href="https://linkedin.com/company/joel-pes"
+                href="https://www.linkedin.com/company/joy-of-engineering-lab/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -44,7 +49,7 @@ export default function Footer() {
                 <Linkedin size={20} />
               </a>
               <a
-                href="https://instagram.com/joel.pes"
+                href="https://www.instagram.com/joe_lab.pesu/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -53,7 +58,7 @@ export default function Footer() {
                 <Instagram size={20} />
               </a>
               <a
-                href="mailto:joel.ece@pes.edu"
+                href="mailto:joel_ece@pes.edu"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Email"
               >
@@ -105,15 +110,16 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm text-gray-400">
+              <li>610, BE Block</li>
               <li>PES University</li>
               <li>Bangalore, Karnataka</li>
               <li>India - 560085</li>
               <li className="pt-2">
                 <a
-                  href="mailto:joel.ece@pes.edu"
+                  href="mailto:joel_ece@pes.edu"
                   className="hover:text-white transition-colors"
                 >
-                  joel.ece@pes.edu
+                  joel_ece@pes.edu
                 </a>
               </li>
             </ul>
