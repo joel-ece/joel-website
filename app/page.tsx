@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import LiveEvents from "@/components/home/LiveEvents";
 import InitiativesPreview from "@/components/home/InitiativesPreview";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import StatsSection from "@/components/home/StatsSection";
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <InitiativesPreview />
       <FeaturedProjects />
+      <LiveEvents />
       <StatsSection />
       <CTASection />
     </>
