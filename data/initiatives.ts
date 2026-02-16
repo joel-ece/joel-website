@@ -77,7 +77,7 @@ export const initiatives: Initiative[] = [
       "Engenium is an annual technical exhibition conducted by HoPES in celebration of Engineer’s Day, where JoEL participates by showcasing interactive, student-developed electronic systems and demonstrations. As part of the exhibition, JoEL presents engaging hardware-based games and models that illustrate core principles of embedded systems, circuit design, and user interaction in a practical and accessible format. Through these live demonstrations, the initiative highlights the creative and application-oriented side of electronics, encouraging participation from both technical and non-technical audiences while fostering curiosity, innovation, and hands-on learning.",
     icon: "Users",
     category: "Project Display",
-    status: "Upcoming",
+    status: "Completed",
   },
 ];
 

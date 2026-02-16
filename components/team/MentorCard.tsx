@@ -29,6 +29,9 @@ export default function MentorCard({
   yearsAtJoEL,
   associatedEvent,
 }: MentorCardProps) {
+  // Show full bio for faculty, clamp for students/others
+  const isFaculty = category === "Faculty Mentor";
+
   return (
     <article className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow h-full flex flex-col">
       {/* Top: avatar + name/role */}
@@ -68,12 +71,16 @@ export default function MentorCard({
         </div>
       </div>
 
-      {/* Optional bio (kept compact) */}
+      {/* Bio: full for faculty, shortened for others */}
       {bio ? (
-        <p className="text-sm text-gray-600 mt-4 line-clamp-3">{bio}</p>
+        <p
+          className={`text-sm text-gray-600 mt-4 ${isFaculty ? "" : "line-clamp-3"}`}
+        >
+          {bio}
+        </p>
       ) : null}
 
-      {/* Info pills (Currently / At JoEL) */}
+      {/* Info pills (Currently / At JoEL / Event) */}
       {(currentWork || yearsAtJoEL || associatedEvent) && (
         <div className="mt-4 space-y-2">
           {currentWork && (
