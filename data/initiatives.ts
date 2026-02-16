@@ -49,5 +49,25 @@ export const initiatives: Initiative[] = [
     category: "Academic",
     status: "Upcoming",
   },
-
+{
+    id: "udan",
+    title: "UDAN",
+    description: "JoEL’s outreach initiative that introduces school students to real-world engineering through live hardware demonstrations and interactive sessions.",
+    longDescription:
+      "UDAN Outreach Initiative is JoEL’s school engagement program designed to introduce young students to practical engineering and innovation through live project demonstrations and interactive sessions. By showcasing working prototypes across robotics, IoT, automation, wireless systems, and embedded applications, the initiative provides early exposure to real-world technology and hands-on learning. The program aims to spark curiosity, build foundational technical awareness, and inspire the next generation of innovators to explore engineering as a future pathway.",
+    icon: "TrendingUp",
+    category: "Academic",
+    status: "Upcoming",
+  },
+{
+    id: "componentdistribution",
+    title: "Components Distribution",
+    description: "JoEL’s initiative to provide electronic component kit to second year students.",
+    longDescription:
+      "Joel's initiative to provide electronic kits consisting of components like microcontrollers, sensors, actuators,  to empower students for starting with hardware projects and helping them dive into the world of hands-on electronics.",
+    icon: "Cpu",
+    category: "Academic",
+    status: "Upcoming",
+  },
 ];
+
