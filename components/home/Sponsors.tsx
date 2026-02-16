@@ -48,7 +48,7 @@ export default function Sponsors() {
   const financial = sponsors.financial;
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           title="Our Sponsors"
@@ -57,8 +57,8 @@ export default function Sponsors() {
         />
 
         {/* Technical Sponsor */}
-        <div className="py-12 bg-gray-50 text-center">
-          <h3 className="text-lg font-semibold text-gray-800 mb-6">Technical Sponsor</h3>
+        <div className="mt-8 text-center"> 
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Technical Sponsor</h3> {/* smaller mb */}
 
           <div className="mx-auto w-full max-w-2xl">
             <a
@@ -66,26 +66,26 @@ export default function Sponsors() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={tech.alt || tech.name}
-              className="block bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow"
+              className="block bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow" /* smaller p */
             >
               <div className="flex items-center justify-center">
                 <Image
                   src={tech.image}
                   alt={tech.alt || tech.name}
-                  width={260}
-                  height={120}
+                  width={420}  /* slightly smaller */
+                  height={210}
                   className="max-w-full h-auto object-contain"
                 />
               </div>
             </a>
 
             {tech.name || tech.description ? (
-              <div className="py-6 text-center">
+              <div className="mt-4 text-center"> {/* reduced mt */}
                 {tech.name && (
-                  <h4 className="text-xl font-semibold text-gray-900">{tech.name}</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">{tech.name}</h4>
                 )}
                 {tech.description && (
-                  <p className="py-2 text-gray-600 max-w-2xl mx-auto">{tech.description}</p>
+                  <p className="mt-2 text-gray-600 max-w-2xl mx-auto">{tech.description}</p>
                 )}
               </div>
             ) : null}
@@ -93,12 +93,12 @@ export default function Sponsors() {
         </div>
 
         {/* Financial Sponsors */}
-        <div className="py-16 text-center">
-          <h3 className="text-lg font-semibold text-gray-800 mb-6">Financial Sponsors</h3>
+        <div className="mt-12 text-center"> {/* reduced mt */}
+          <h3 className="text-center text-lg font-semibold text-gray-800 mb-4">Financial Sponsors</h3>
 
           <div className="flex justify-center">
             <div className="w-full max-w-4xl">
-              <div className="flex flex-wrap items-center justify-center gap-6">
+              <div className="flex flex-wrap items-center justify-center gap-4"> {/* reduced gap */}
                 {financial.map((s) => (
                   <a
                     key={s.id}
@@ -106,14 +106,13 @@ export default function Sponsors() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.alt || s.name}
-                    className="inline-flex items-center justify-center bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-shadow"
-                    style={{ minWidth: 220 }}
+                    className="inline-flex items-center justify-center bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"                     style={{ minWidth: 160 }} /* reduced min width */
                   >
                     <Image
                       src={s.image}
                       alt={s.alt || s.name}
-                      width={260}
-                      height={120}
+                      width={200}  /* smaller image */
+                      height={90}
                       className="max-w-full h-auto object-contain"
                     />
                   </a>
