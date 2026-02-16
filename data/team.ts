@@ -10,21 +10,35 @@ export interface FacultyMentor {
   github?: string;
 }
 
-export interface StudentMentor {
+export interface StudentTeachingAssistant {
   id: string;
   name: string;
   role: string;
-  category: "Student Mentor";
+  category: "Student Teaching Assistant";
   bio: string;
-  currentWork: string;
-  yearsAtJoEL: string;
+  currentWork?: string;
+  yearsAtJoEL?: string;
   email: string;
   image?: string;
   linkedin?: string;
   github?: string;
 }
 
-export type TeamMember = FacultyMentor | StudentMentor;
+export interface EventStudentMentor {
+  id: string;
+  name: string;
+  role: string;
+  category: "Student Mentor"; // event-specific mentors
+  bio: string;
+  email: string;
+  image?: string;
+  linkedin?: string;
+  github?: string;
+  // optional field to indicate which event they mentored
+  associatedEvent?: string;
+}
+
+export type TeamMember = FacultyMentor | StudentTeachingAssistant | EventStudentMentor;
 
 export const teamMembers: TeamMember[] = [
   // ===== FACULTY MENTORS =====
@@ -38,8 +52,8 @@ export const teamMembers: TeamMember[] = [
     image: "/team/prajeesha.jpg",
     linkedin: "https://www.linkedin.com/in/prajeesha-prajeesha-2aa6111ba/",
     github: "",
-  }, 
-{
+  },
+  {
     id: "faculty-2",
     name: "Prof. Rajasekar Mohan",
     role: "Faculty Mentor",
@@ -50,7 +64,7 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/mohanrajasekar/",
     github: "",
   },
-{
+  {
     id: "faculty-3",
     name: "Prof. Shagun Gupta",
     role: "Faculty Mentor",
@@ -62,12 +76,12 @@ export const teamMembers: TeamMember[] = [
     github: "",
   },
 
-  // ===== STUDENT MENTORS =====
+  // ===== STUDENT TEACHING ASSISTANTS (core team) =====
   {
     id: "student-1",
     name: "Dhanush M R",
     role: "Ex - Student Head",
-    category: "Student Mentor",
+    category: "Student Teaching Assistant",
     bio: "",
     currentWork: "Firmware Engineer at Connect-X",
     yearsAtJoEL: "2023–2025",
@@ -80,7 +94,7 @@ export const teamMembers: TeamMember[] = [
     id: "student-2",
     name: "Spoorthi Shetty",
     role: "Ex - Student Head",
-    category: "Student Mentor",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2023–2025",
     email: "spoorthisetty@yahoo.com",
@@ -89,11 +103,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/spoorthi-shetty-454859257/",
     github: "https://github.com/spoorthisetty99",
   },
-{
+  {
     id: "student-3",
     name: "Vilas V",
     role: "Student Head",
-    category: "Student Mentor",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2026",
     email: "vvilas231@gmail.com",
@@ -102,11 +116,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/vilas-v-ba5631282/",
     github: "",
   },
-{
+  {
     id: "student-4",
     name: "Kaavya Katuri",
     role: "Student Head",
-    category: "Student Mentor",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2026",
     email: "kaavya.katuri@gmail.com",
@@ -115,11 +129,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/kaavyakaturi/",
     github: "",
   },
-{
+  {
     id: "student-5",
     name: "Yashwant N J",
-    role: "Ex - Student Mentor",
-    category: "Student Mentor",
+    role: "Ex - Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2025",
     email: "njyashwant@gmail.com",
@@ -128,11 +142,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/yashwantnj/",
     github: "",
   },
-{
+  {
     id: "student-6",
     name: "Samhitha Ramarathnam",
-    role: "Ex - Student Mentor",
-    category: "Student Mentor",
+    role: "Ex - Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2025",
     email: "rsamram04@gmail.com",
@@ -141,11 +155,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/samhitha-ramarathnam-980b74265/",
     github: "",
   },
-{
+  {
     id: "student-7",
     name: "Hitesh Pranav",
-    role: "Student Mentor",
-    category: "Student Mentor",
+    role: "Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2026",
     email: "hiteshpranavreddy.d@gmail.com",
@@ -154,11 +168,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/hitesh-pranav-reddy-379371264/",
     github: "https://github.com/HiteshPranav267",
   },
-{
+  {
     id: "student-8",
     name: "Keerthi Abeestitha",
-    role: "Student Mentor",
-    category: "Student Mentor",
+    role: "Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2026",
     email: "keerthiabeestithatncks@gmail.com",
@@ -167,11 +181,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/keerthi-abeestitha-t-n-67188b284/",
     github: "",
   },
-{
+  {
     id: "student-9",
     name: "Pruthvi",
-    role: "Student Mentor",
-    category: "Student Mentor",
+    role: "Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2025–2026",
     email: "p7504214@gmail.com",
@@ -180,12 +194,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/pruthvi-30a1852b6/",
     github: "",
   },
-
-{
+  {
     id: "student-10",
     name: "Manasa Ajit",
-    role: "Ex - Student Mentor",
-    category: "Student Mentor",
+    role: "Ex - Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2024–2025",
     email: "manasaajit.j@gmail.com",
@@ -194,11 +207,11 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/manasa-ajit/",
     github: "",
   },
-{
+  {
     id: "student-11",
     name: "Chinmay Grandhi",
-    role: "Student Mentor",
-    category: "Student Mentor",
+    role: "Student Incharge",
+    category: "Student Teaching Assistant",
     bio: "",
     yearsAtJoEL: "2025–2026",
     email: "chinmaygrandhi2006@gmail.com",
@@ -207,6 +220,287 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/chinmay-grandhi-19466a351/",
     github: "",
   },
+
+  // ===== EXAMPLE: Event-specific Student Mentor (optional) =====
+  // Add event mentors here. If you don't have any yet, remove this example.
+  {
+    id: "roadshow26-1",
+    name: "Aashrit K Bhat",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "aashritbhat@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/aashrit.jpg",
+    linkedin: "https://www.linkedin.com/in/aashrit-k-bhat-1011b327a/",
+    github: "https://github.com/Aashrit1",
+  },
+
+{
+    id: "roadshow26-2",
+    name: "Anthariksh Kollegal Santusht",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "anthariksh.santusht@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/antariksh.png",
+    linkedin: "https://www.linkedin.com/in/antharikshsantusht/",
+    github: "https://github.com/eatables3009",
+  },
+{
+    id: "roadshow26-3",
+    name: "Arnav Rao",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "arnavrao100@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/arnav.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-4",
+    name: "Chinmay H Acharya",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "chinmayacharya2005@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/chinmayh.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-5",
+    name: "Dakshin S",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "dakshinselva3@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/dakshin.png",
+    linkedin: "www.linkedin.com/in/dakshin-selva-250705ca",
+    github: "https://github.com/dakshin-s",
+  },
+{
+    id: "roadshow26-6",
+    name: "Dheemanth A",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "dheemanth1579@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/dheemanth.png",
+    linkedin: "",
+    github: "https://github.com/LogisticSapien",
+  },
+{
+    id: "roadshow26-7",
+    name: "Dhruva Meravanige",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "dhruvameravanige@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/dhruva.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-8",
+    name: "Dibyadyuti Mohanty",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "mohanty.dibyadyuti@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/dibya.png",
+    linkedin: "www.linkedin.com/in/dibyadyuti-mohanty",
+    github: "",
+  },
+{
+    id: "roadshow26-18",
+    name: "Eshaan Ballal",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "eshaanballal@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/eshaan.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-9",
+    name: "Ishan Goyal",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "goyalishan27@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/ishan.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-10",
+    name: "Kushal M",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "kushal45412@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/kushal.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-11",
+    name: "Moka Jahnavi",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/jahnavi.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-12",
+    name: "Pragna Prasad",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "pragnap1704@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/pragna.png",
+    linkedin: "www.linkedin.com/in/pragna-prasad-4900b3206",
+    github: "",
+  },
+{
+    id: "roadshow26-13",
+    name: "Rahul R",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "rahulramalinga1@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/rahul.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-14",
+    name: "Srishti M Salimath",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "srishtimsalimath@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/srishti.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-15",
+    name: "Tanmay Sankolli",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "tanmaysankolli23@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/tanmay.png",
+    linkedin: "https://www.linkedin.com/in/tanmay-sankolli",
+    github: "https://github.com/tvs-tanmay",
+  },
+{
+    id: "roadshow26-16",
+    name: "Tarun A G",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "tarunmailsu@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/tarunag.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow26-17",
+    name: "Tarun Gopal",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 26",
+    email: "tarungopal235@gmail.com",
+    associatedEvent: "RoadShow 26",
+    image: "/team/mentors/tarungopal.png",
+    linkedin: "",
+    github: "",
+  },
+{
+    id: "roadshow25-1",
+    name: "Rakesh P",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 25",
+    email: "pes1202203682@pesu.pes.edu",
+    associatedEvent: "RoadShow 25",
+    image: "/team/mentors/rakeshp.png",
+    linkedin: "linkedin.com/in/rakesh-patil-841ab92ba",
+    github: "https://github.com/RakeshpatilLB",
+  },
+{
+    id: "roadshow25-2",
+    name: "Ranjeet Pawar",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 25",
+    email: "ranjeetpawar0809@gmail.com",
+    associatedEvent: "RoadShow 25",
+    image: "/team/mentors/.png",
+    linkedin: "https://www.linkedin.com/in/techy-ranjeet/",
+    github: "",
+  },
+{
+    id: "roadshow25-3",
+    name: "Yashas v",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 25",
+    email: "pes1202202644@pesu.pes.edu",
+    associatedEvent: "RoadShow 25",
+    image: "/team/mentors/yashasv.png",
+    linkedin: "https://www.linkedin.com/in/yashas-vishwanathan-3a537a290/",
+    github: "https://github.com/Logrooot",
+  },
+{
+    id: "roadshow25-4",
+    name: "Sushant R Naik ",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 25",
+    email: "pes1202201505@pesu.pes.edu",
+    associatedEvent: "RoadShow 25",
+    image: "/team/mentors/sushantrnaik.png",
+    linkedin: "https://www.linkedin.com/in/sushant-ravi-naik/",
+    github: "https://github.com/Sushi-ops",
+  },
+{
+    id: "roadshow25-5",
+    name: "Raunak Kodwani",
+    role: "Project Mentor",
+    category: "Student Mentor",
+    bio: "Student Mentor for RoadShow 25",
+    email: "kodwaniraunak1@gmail.com",
+    associatedEvent: "RoadShow 25",
+    image: "/team/mentors/.png",
+    linkedin: "https://www.linkedin.com/in/raunak-kodwani-839476222",
+    github: "https://github.com/kanuar",
+  },
+
 
   // Add more members following the same pattern...
 ];

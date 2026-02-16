@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SectionHeader from "@/components/ui/SectionHeader";
 import MentorCard from "@/components/team/MentorCard";
 import { teamMembers } from "@/data/team";
-import type { StudentMentor } from "@/data/team";
+import type { StudentTeachingAssistant } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -14,6 +14,11 @@ export default function TeamPage() {
   const facultyMentors = teamMembers.filter(
     (member) => member.category === "Faculty Mentor"
   );
+
+  const teachingAssistants = teamMembers.filter(
+    (member) => member.category === "Student Teaching Assistant"
+  );
+
   const studentMentors = teamMembers.filter(
     (member) => member.category === "Student Mentor"
   );
@@ -51,7 +56,7 @@ export default function TeamPage() {
                   category={member.category}
                   bio={member.bio}
                   email={member.email}
-		  image={member.image}
+                  image={member.image}
                   linkedin={member.linkedin}
                   github={member.github}
                 />
@@ -61,20 +66,19 @@ export default function TeamPage() {
         </section>
       )}
 
-      {/* Student Mentors */}
-      {studentMentors.length > 0 && (
-        <section className="py-20 bg-gray-50">
+      {/* Student Teaching Assistants (core) */}
+      {teachingAssistants.length > 0 && (
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold font-heading text-gray-900 mb-2 text-center">
-              Student Mentors
+              Student Teaching Assistants
             </h2>
             <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
-              Alumni and senior students who have contributed to JoEL's
-              mission and continue to inspire the next generation
+              Core JoEL members who help run labs, mentor teams across projects, and ensure smooth operations.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {studentMentors.map((member) => {
-                const studentData = member as StudentMentor;
+              {teachingAssistants.map((member) => {
+                const studentData = member as StudentTeachingAssistant;
                 return (
                   <MentorCard
                     key={member.id}
@@ -82,8 +86,8 @@ export default function TeamPage() {
                     role={member.role}
                     category={member.category}
                     bio={member.bio}
-                    email={member.email}	
- 		    image={member.image}
+                    email={member.email}
+                    image={member.image}
                     linkedin={member.linkedin}
                     github={member.github}
                     currentWork={studentData.currentWork}
@@ -91,6 +95,35 @@ export default function TeamPage() {
                   />
                 );
               })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Student Mentors (event-specific) */}
+      {studentMentors.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold font-heading text-gray-900 mb-2 text-center">
+              Student Mentors
+            </h2>
+            <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+              Event- or project-specific student mentors who supported teams during particular initiatives.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {studentMentors.map((member) => (
+                <MentorCard
+                  key={member.id}
+                  name={member.name}
+                  role={member.role}
+                  category={member.category}
+                  bio={member.bio}
+                  email={member.email}
+                  image={(member as any).image}
+                  linkedin={(member as any).linkedin}
+                  github={(member as any).github}
+                />
+              ))}
             </div>
           </div>
         </section>

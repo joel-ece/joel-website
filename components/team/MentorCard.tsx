@@ -2,18 +2,19 @@ import React from "react";
 import Image from "next/image";
 import { Mail, Linkedin, Github, Briefcase, Calendar } from "lucide-react";
 
-interface MentorCardProps {
+type MentorCardProps = {
   name: string;
   role: string;
-  category: "Faculty Mentor" | "Student Mentor";
-  bio: string;
-  email: string;
+  category: string;
+  bio?: string;
+  email?: string;
   image?: string;
   linkedin?: string;
   github?: string;
   currentWork?: string;
   yearsAtJoEL?: string;
-}
+  associatedEvent?: string;
+};
 
 export default function MentorCard({
   name,
@@ -26,116 +27,132 @@ export default function MentorCard({
   github,
   currentWork,
   yearsAtJoEL,
+  associatedEvent,
 }: MentorCardProps) {
-  const initials = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("");
-
-  const avatarGradient =
-    category === "Faculty Mentor"
-      ? "from-joel-purple-500 to-joel-purple-700"
-      : "from-joel-blue-500 to-joel-blue-700";
-
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 overflow-hidden h-full flex flex-col">
-      <div className="p-6 flex-grow">
-        {/* Header: Photo/Avatar + Name */}
-        <div className="flex items-start space-x-4 mb-4">
+    <article className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow h-full flex flex-col">
+      {/* Top: avatar + name/role */}
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0">
           {image ? (
-            <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-gray-200">
-              <Image
-                src={image}
-                alt={name}
-                width={64}
-                height={64}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <Image
+              src={image}
+              alt={`${name} photo`}
+              width={64}
+              height={64}
+              className="rounded-full object-cover"
+            />
           ) : (
-            <div
-              className={`w-16 h-16 bg-gradient-to-br ${avatarGradient} rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0`}
-            >
-              {initials}
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+              <span className="font-semibold text-sm">
+                {name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .slice(0, 2)
+                  .join("")}
+              </span>
             </div>
           )}
-          <div className="flex-grow">
-            <h3 className="text-xl font-bold font-heading text-gray-900 mb-1">
-              {name}
-            </h3>
-            <p className="text-joel-purple-600 font-semibold text-sm mb-2">
-              {role}
-            </p>
-            <span
-              className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
-                category === "Faculty Mentor"
-                  ? "bg-joel-purple-100 text-joel-purple-700"
-                  : "bg-joel-blue-100 text-joel-blue-700"
-              }`}
-            >
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-semibold text-gray-900 leading-tight">{name}</h3>
+
+          <p className="text-sm text-joel-purple-600 mt-1">{role}</p>
+
+          <div className="mt-2">
+            <span className="inline-block text-xs bg-joel-purple-50 text-joel-purple-600 px-3 py-1 rounded-full">
               {category}
             </span>
           </div>
         </div>
+      </div>
 
-        {/* Bio */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">{bio}</p>
+      {/* Optional bio (kept compact) */}
+      {bio ? (
+        <p className="text-sm text-gray-600 mt-4 line-clamp-3">{bio}</p>
+      ) : null}
 
-        {/* Student Mentor specific: Current Work & Years */}
-        {category === "Student Mentor" && (
-          <div className="space-y-2 mb-4">
-            {currentWork && (
-              <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
-                <Briefcase className="w-4 h-4 mr-2 text-joel-blue-600 flex-shrink-0" />
-                <span>
-                  <strong>Currently:</strong> {currentWork}
-                </span>
+      {/* Info pills (Currently / At JoEL) */}
+      {(currentWork || yearsAtJoEL || associatedEvent) && (
+        <div className="mt-4 space-y-2">
+          {currentWork && (
+            <div className="flex items-center gap-3 bg-gray-50 rounded-md px-3 py-2 w-full">
+              <div className="p-2 rounded-md bg-white shadow-sm">
+                <Briefcase className="w-4 h-4 text-joel-purple-600" />
               </div>
-            )}
-            {yearsAtJoEL && (
-              <div className="flex items-center text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
-                <Calendar className="w-4 h-4 mr-2 text-joel-blue-600 flex-shrink-0" />
-                <span>
-                  <strong>At JoEL:</strong> {yearsAtJoEL}
-                </span>
+              <div className="text-sm text-gray-700">
+                <span className="font-medium text-gray-900">Currently: </span>
+                <span>{currentWork}</span>
               </div>
-            )}
-          </div>
-        )}
-
-        {/* Social Links */}
-        <div className="flex items-center space-x-3 pt-2 border-t border-gray-100">
-          <a
-            href={`mailto:${email}`}
-            className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 text-gray-600 hover:bg-joel-purple-100 hover:text-joel-purple-600 transition-colors"
-            aria-label={`Email ${name}`}
-          >
-            <Mail className="w-4 h-4" />
-          </a>
-          {linkedin && (
-            <a
-              href={linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors"
-              aria-label={`${name}'s LinkedIn`}
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
+            </div>
           )}
-          {github && (
-            <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-800 hover:text-white transition-colors"
-              aria-label={`${name}'s GitHub`}
-            >
-              <Github className="w-4 h-4" />
-            </a>
+
+          {yearsAtJoEL && (
+            <div className="flex items-center gap-3 bg-gray-50 rounded-md px-3 py-2 w-full">
+              <div className="p-2 rounded-md bg-white shadow-sm">
+                <Calendar className="w-4 h-4 text-joel-purple-600" />
+              </div>
+              <div className="text-sm text-gray-700">
+                <span className="font-medium text-gray-900">At JoEL: </span>
+                <span>{yearsAtJoEL}</span>
+              </div>
+            </div>
+          )}
+
+          {associatedEvent && (
+            <div className="flex items-center gap-3 bg-gray-50 rounded-md px-3 py-2 w-full">
+              <div className="p-2 rounded-md bg-white shadow-sm">
+                <Briefcase className="w-4 h-4 text-joel-purple-600" />
+              </div>
+              <div className="text-sm text-gray-700">
+                <span className="font-medium text-gray-900">Event: </span>
+                <span>{associatedEvent}</span>
+              </div>
+            </div>
           )}
         </div>
+      )}
+
+      {/* Divider */}
+      <div className="mt-4 border-t border-gray-100"></div>
+
+      {/* Footer actions */}
+      <div className="mt-3 flex items-center gap-3">
+        {email && (
+          <a
+            href={`mailto:${email}`}
+            className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-50 hover:bg-gray-100 transition"
+            aria-label={`Email ${name}`}
+          >
+            <Mail className="w-4 h-4 text-gray-700" />
+          </a>
+        )}
+
+        {linkedin && (
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-50 hover:bg-gray-100 transition"
+            aria-label={`${name} on LinkedIn`}
+          >
+            <Linkedin className="w-4 h-4 text-gray-700" />
+          </a>
+        )}
+
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-gray-50 hover:bg-gray-100 transition"
+            aria-label={`${name} on GitHub`}
+          >
+            <Github className="w-4 h-4 text-gray-700" />
+          </a>
+        )}
       </div>
-    </div>
+    </article>
   );
 }

@@ -38,7 +38,13 @@ const sponsors = {
       name: "Transaction Analysts",
       image: "/sponsors/financial4.png",
       url: "https://transactionanalysts.com",
-      alt: "Transaction Analysts logo",
+      alt: "Transaction Analysts logo",},
+    {
+      id: "fin-5",
+      name: "MathWorks",
+      image: "/sponsors/technical.png",
+      url: "https://in.mathworks.com",
+      alt: "MathWorks logo",
     },
   ],
 };
