@@ -31,6 +31,15 @@ export default function LiveEvents() {
     return daysUntil <= 7 && daysUntil > 0;
   };
 
+  // Helper to check if registration deadline has passed.
+  // This treats the deadline as inclusive for the day — registrations close after the deadline day ends.
+  const isRegistrationClosed = (dateString: string) => {
+    const deadline = new Date(dateString);
+    // set to end of day of the deadline
+    deadline.setHours(23, 59, 59, 999);
+    return deadline.getTime() < Date.now();
+  };
+
   return (
     <section className="py-20 bg-gradient-to-br from-joel-purple-50 via-white to-joel-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,53 +59,70 @@ export default function LiveEvents() {
 
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activeEvents.map((event) => (
-            <div
-              key={event.id}
-              className="bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:border-joel-purple-400 transition-all duration-300 overflow-hidden group"
-            >
-              {/* Deadline Badge */}
-              <div className="bg-joel-gradient p-4">
-                <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="w-5 h-5" />
-                    <span className="text-sm font-semibold">
-                      REGISTRATION DEADLINE
-                    </span>
+          {activeEvents.map((event) => {
+            const closed = isRegistrationClosed(event.registrationDeadline);
+            const soon = isDeadlineSoon(event.registrationDeadline);
+
+            return (
+              <div
+                key={event.id}
+                className="bg-white rounded-xl shadow-lg border-2 border-gray-200 hover:border-joel-purple-400 transition-all duration-300 overflow-hidden group"
+              >
+                {/* Deadline Badge */}
+                <div className={closed ? "bg-gray-300 p-4" : "bg-joel-gradient p-4"}>
+                  <div className="flex items-center justify-between text-white">
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-5 h-5" />
+                      <span className="text-sm font-semibold">
+                        {closed ? "REGISTRATIONS CLOSED" : "REGISTRATION DEADLINE"}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <p className="text-white font-bold text-lg mt-2">
-                  {formatDate(event.registrationDeadline)}
-                </p>
-                {isDeadlineSoon(event.registrationDeadline) && (
-                  <p className="text-yellow-300 text-sm font-semibold mt-1 animate-pulse">
-                    ⚡ Closing Soon!
+                  <p className="text-white font-bold text-lg mt-2">
+                    {formatDate(event.registrationDeadline)}
                   </p>
-                )}
-              </div>
+                  {soon && !closed && (
+                    <p className="text-yellow-300 text-sm font-semibold mt-1 animate-pulse">
+                      ⚡ Closing Soon!
+                    </p>
+                  )}
+                </div>
 
-              {/* Event Content */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold font-heading text-gray-900 mb-3 group-hover:text-joel-purple-600 transition-colors">
-                  {event.name}
-                </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {event.description}
-                </p>
+                {/* Event Content */}
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold font-heading text-gray-900 mb-3 group-hover:text-joel-purple-600 transition-colors">
+                    {event.name}
+                  </h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {event.description}
+                  </p>
 
-                {/* Register Button */}
-                <a
-                  href={event.registrationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full px-6 py-3 bg-joel-gradient text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg group"
-                >
-                  Register Here
-                  <ExternalLink className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                  {/* Register Button / Closed state */}
+                  {closed ? (
+                    <div className="w-full">
+                      <button
+                        type="button"
+                        disabled
+                        className="w-full px-6 py-3 bg-gray-100 text-gray-500 font-semibold rounded-lg shadow-sm cursor-not-allowed"
+                      >
+                        Registrations Closed
+                      </button>
+                    </div>
+                  ) : (
+                    <a
+                      href={event.registrationLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full px-6 py-3 bg-joel-gradient text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg group"
+                    >
+                      Register Here
+                      <ExternalLink className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Note at bottom */}
