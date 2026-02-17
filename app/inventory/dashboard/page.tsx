@@ -38,7 +38,7 @@ export default function DashboardPage() {
     }
   }, [user])
 
-  // Filter components
+  // Filter components (now includes notes in search)
   useEffect(() => {
     let filtered = components
 
@@ -47,12 +47,14 @@ export default function DashboardPage() {
       filtered = filtered.filter((c) => c.category === selectedCategory)
     }
 
-    // Filter by search term
+    // Filter by search term (name, location, notes)
     if (searchTerm) {
+      const q = searchTerm.toLowerCase()
       filtered = filtered.filter(
         (c) =>
-          c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          c.location?.toLowerCase().includes(searchTerm.toLowerCase())
+          c.name.toLowerCase().includes(q) ||
+          c.location?.toLowerCase().includes(q) ||
+          c.notes?.toLowerCase().includes(q)
       )
     }
 
@@ -169,32 +171,37 @@ export default function DashboardPage() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <div className="flex-1 min-w-0 h-10 relative">
+              {/* Use inset-y-0 + flex items-center so the icon is vertically centered */}
+              <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                <Search className="w-5 h-5 text-gray-400" />
+              </span>
               <input
                 type="text"
-                placeholder="Search components or location..."
+                placeholder="Search components, location or notes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-joel-purple-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 h-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-joel-purple-500 focus:border-transparent text-gray-900"
               />
             </div>
 
-            {/* Category Filter */}
-            <div className="flex items-center space-x-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    selectedCategory === category
-                      ? 'bg-joel-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+            {/* Category Filter (horizontally scrollable) */}
+            <div className="flex items-center">
+              <div className="flex space-x-2 overflow-x-auto md:max-w-xs py-1 pr-2">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`flex-shrink-0 whitespace-nowrap px-4 py-2 rounded-lg font-medium transition-colors ${
+                      selectedCategory === category
+                        ? 'bg-joel-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
