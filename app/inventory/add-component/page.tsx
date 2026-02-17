@@ -43,7 +43,7 @@ export default function AddComponentPage() {
     'Motors',
     'Wheels',
     'Drone Components',
-    'Camera Components',
+    'Cameras',
     'Tools',
     'Cables & Connectors',
     'ICs',
