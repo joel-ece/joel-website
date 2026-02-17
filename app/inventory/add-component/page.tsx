@@ -40,10 +40,11 @@ export default function AddComponentPage() {
     'Power Supplies',
     'Communication Modules',
     'Display Modules',
+    'Motors',
+    'Wheels',
+    'Drone Components',
     'Tools',
     'Cables & Connectors',
-    'Development Boards',
-    'Single Board Computers',
     'ICs',
     'Other',
   ]
