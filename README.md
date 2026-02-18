@@ -111,7 +111,7 @@ We welcome contributions from the JoEL community! To contribute:
 
 ## 📧 Contact
 
-**Email:** joel.ece@pes.edu
+**Email:** joel_ece@pes.edu
 
 **Location:** Department of Electronics & Communication Engineering, PES University, Bangalore
 
